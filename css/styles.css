@@ -118,6 +118,59 @@ body {
   color: var(--black-color);
 }
 
+/* Shopping cart */
+.shopping-cart {
+  position: absolute;
+  top: 100%;
+  right: -100%;
+  height: 100vh;
+  width: 35rem;
+  padding: 0 1.5rem;
+  color: var(--bg);
+  background-color: var(--black-color);
+  transition: 0.3s;
+}
+
+.shopping-cart .cart-item {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed var(--bg);
+  position: relative;
+}
+
+.shopping-cart img {
+  height: 6rem;
+  border-radius: 50%;
+}
+
+.shopping-cart h3 {
+  font-size: 1.6rem;
+  padding-bottom: 0.5rem;
+}
+
+.shopping-cart .item-price {
+  font-size: 1.2rem;
+}
+
+.shopping-cart .remove-item {
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
+}
+
+.shopping-cart .remove-item:hover {
+  color: var(--primary-color);
+}
+
+.shopping-cart.active {
+  transition: 0.3s;
+  right: 0;
+}
+
+
 /* Hero Section */
 .hero {
   min-height: 100vh;
@@ -238,10 +291,11 @@ body {
 }
 
 .barang .row {
-  margin-top: 5rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 1.5rem;
+  cursor: pointer;
 }
 
 .barang .row .barang-card {
@@ -262,7 +316,7 @@ body {
 }
 
 .barang .row .barang-card img {
-  /* height: 300px; */
+  /* height: 25rem; */
   width: 260px;
   border-radius: 1.5rem;
 }
@@ -270,6 +324,42 @@ body {
 .barang .row .barang-card .barang-card-title {
   margin: 1rem auto 0.5rem;
   font-size: 1.5rem;
+}
+
+.barang .row .barang-card .barang-card-price {
+  font-size: 1.2rem;
+  /* color: var(--primary-color); */
+  margin-bottom: 0.5rem;
+}
+
+.barang .row .barang-card .product-stars {
+  margin: 0.8rem;
+  color: rgb(232, 136, 11);
+}
+
+.barang .row .barang-card .product-stars .star-full {
+  fill: rgb(251, 143, 1);
+}
+
+.barang .row .barang-card .cart-barang {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 1rem;
+}
+
+.barang .row .barang-card .cart-barang #shopping-cart-btn {
+  /* border: 1px solid transparent; */
+  /* background-color: #666; */
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+
+.barang .row .barang-card .cart-barang #shopping-cart-btn:hover {
+  /* background-color: #ddd; */
+  /* border: 1px solid var(--primary-color); */
+  border-radius: 10px;
+  color: var(--primary-color);
+  transition: 0.1s;
 }
 
 /* contact section */
@@ -356,6 +446,80 @@ footer .credit a {
   font-weight: 700;
 }
 
+/* Modal Mox */
+/* item detail */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0, 0.8);
+}
+
+.modal-container {
+  position: relative;
+  background-color: #eee;
+  color: var(--black-color);
+  margin: 12% auto;
+  padding: 1.2rem;
+  border: 1px solid var(--black-color);
+  width: 80%;
+  animation: animateModal 0.4s;
+}
+
+/* modal animations */
+@keyframes animateModal {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+.modal-container .close-icon {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  cursor: pointer;
+}
+
+.modal-content {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.modal-content img {
+  height: 21rem;
+  margin-right: 2rem;
+  margin-bottom: 2rem
+}
+
+.modal-content p {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  margin-top: 1.2rem;
+}
+
+.modal-content a {
+  display: flex;
+  gap: 1rem;
+  width: 12rem;
+  background-color: var(--primary-color);
+  color: var(--bg);
+  margin-top: 1rem;
+  padding: 1rem 1.6rem;
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
 
 /* Media Queries */
 
@@ -379,7 +543,7 @@ footer .credit a {
     position: absolute;
     top: 100%;
     right: -100%;
-    background-color: rgb(0, 0, 0, 0.8);
+    background-color: var(--black-color);
     width: 30rem;
     height: 100vh;
     transition: 0.3s;
@@ -435,6 +599,26 @@ footer .credit a {
 
   .barang p {
   font-size: 1.2rem;
+  }
+
+  .modal-content {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .modal-content img {
+    height: 21rem;
+    margin-bottom: 1rem;
+  }
+
+  .modal-content a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    text-align: center;
+    margin: 1rem auto;
   }
 }
 
