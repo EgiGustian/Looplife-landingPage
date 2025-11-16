@@ -1,69 +1,64 @@
-const navbarNav = document.querySelector('.navbar-nav');
-const searchForm = document.querySelector('.search-form');
-const searchBox = document.querySelector('#search-box');
-const shoppingCart = document.querySelector('.shopping-cart');
+const navbarNav = document.querySelector(".navbar-nav");
+const searchForm = document.querySelector(".search-form");
+const searchBox = document.querySelector("#search-box");
+const shoppingCart = document.querySelector(".shopping-cart");
 
 const buttonPanelMappings = [
-  { btn: '#menu', panel: navbarNav },
-  { btn: '#search-btn', panel: searchForm, focus: searchBox },
-  { btn: '#shopping-cart-btn', panel: shoppingCart }
+  { btn: "#menu", panel: navbarNav },
+  { btn: "#search-btn", panel: searchForm, focus: searchBox },
+  { btn: "#shopping-cart-btn", panel: shoppingCart },
 ];
 
 buttonPanelMappings.forEach(({ btn, panel, focus }) => {
   const el = document.querySelector(btn);
   if (!el || !panel) return;
-  el.addEventListener('click', (e) => {
-    panel.classList.toggle('active');
+  el.addEventListener("click", (e) => {
+    panel.classList.toggle("active");
     if (focus) focus.focus();
     e.preventDefault();
   });
 });
 
 // Klik di luar elemet
-const menuNav = document.querySelector('#menu');
-const searchBtn = document.querySelector('#search-btn');
-const cartBtn = document.querySelector('#shopping-cart-btn');
+const menuNav = document.querySelector("#menu");
+const searchBtn = document.querySelector("#search-btn");
+const cartBtn = document.querySelector("#shopping-cart-btn");
 
 const targets = [
   { trigger: menuNav, panel: navbarNav },
   { trigger: searchBtn, panel: searchForm },
-  { trigger: cartBtn, panel: shoppingCart }
+  { trigger: cartBtn, panel: shoppingCart },
 ];
 
-document.addEventListener('click', e => {
+document.addEventListener("click", (e) => {
   targets.forEach(({ trigger, panel }) => {
     if (!trigger.contains(e.target) && !panel.contains(e.target)) {
-      panel.classList.remove('active');
+      panel.classList.remove("active");
     }
   });
 });
 
 // Modal box
-const itemDetails = document.querySelector('#item-detail-modal');
-const itemDetailBtns = document.querySelectorAll('.barang-card');
+const itemDetails = document.querySelector("#item-detail-modal");
+const itemDetailBtns = document.querySelectorAll(".barang-card");
 
-itemDetailBtns.forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    // jika klik berada di dalam elemen dengan class 'cart-barang' atau pada tombol shopping cart
-    if (e.target.closest('.cart-barang') || e.target.closest('#shopping-cart-btn')) {
-      shoppingCart.classList.toggle('active');
-    } else {
-      itemDetails.style.display = 'flex';
-    }
+itemDetailBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    itemDetails.style.display = "flex";
     e.preventDefault();
   });
 });
 
 // close modal
-document.querySelector('.modal .close-icon').addEventListener('click', (e) => {
-  itemDetails.style.display = 'none';
+document.querySelector(".modal .close-icon").addEventListener("click", (e) => {
+  itemDetails.style.display = "none";
   e.preventDefault();
 });
 
 // klik di luar modal
-window.addEventListener('click', (e) => {
+window.addEventListener("click", (e) => {
   if (e.target === itemDetails) {
-    itemDetails.style.display = 'none';
+    itemDetails.style.display = "none";
   }
 });
 
@@ -108,4 +103,3 @@ window.addEventListener('click', (e) => {
 //     shoppingCart.classList.remove('active');
 //   }
 // })
-
