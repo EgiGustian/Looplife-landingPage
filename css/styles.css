@@ -696,6 +696,10 @@ footer .credit a {
     text-align: center;
     margin: 1rem auto;
   }
+
+  #shopping-cart-btn .quantity-badge {
+    right: -5px;
+  }
 }
 
 /* mobile */
